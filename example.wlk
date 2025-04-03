@@ -1,15 +1,29 @@
 object paqueteDeGeorge {
-     
+     var estaPago = false
+
+	 method pagar () {
+		estaPago = true
+	 }
+
+	 method estaPaquetePago () {
+		return estaPago
+	 }
+
+	 method puedeSerPaqueteEnviado (lugar, mensajero) {
+		return estaPago && lugar.puedePasar(mensajero)
+	 }
 }
 
 object puenteDeBrooklyn {
 	method puedePasar(mensajero) {
-		
+		return mensajero.peso() <= 1000
 	}
 }
 
 object matrix {
-
+    method puedePasar(mensajero) {
+		return mensajero.puedeLlamar()
+	}
 }
 
 object chuckNorris {
@@ -37,19 +51,29 @@ object neo {
         return credito > 0
 	}
 
+	method aumentarCredito (cantidad) {
+		credito += cantidad
+	}
+
+	method disminuirCredito (cantidad) {
+		credito -= cantidad
+	}
+
 }
 
 object lincolnHawk {
-	var peso = 80
+	var peso = 80 
 
 	var vehiculoActual = bici
 
-	method vehiculo (_vehiculo) {
-         vehiculoActual = _vehiculo
+	method cambioDePesoYVehiculo (_vehiculo) {
+         peso = peso - vehiculoActual.pesoQueTiene()
+		 vehiculoActual = _vehiculo
+		 peso = peso + vehiculoActual.pesoQueTiene()
 	}
 
 	method peso () {
-        return peso + vehiculoActual.pesoQueTiene()
+        return peso
 	}
 
 	method puedeLlamar() {
