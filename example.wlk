@@ -1,125 +1,83 @@
 object paqueteDeGeorge {
-     var estaPago = false
-
-	 method pagar () {
+	var estaPago = false
+	
+	method pagar() {
 		estaPago = true
-	 }
-
-	 method estaPaquetePago () {
-		return estaPago
-	 }
-
-	 method puedeSerPaqueteEnviado (lugar, mensajero) {
-		return estaPago && lugar.puedePasar(mensajero)
-	 }
+	}
+	
+	method estaPaquetePago() = estaPago
+	
+	method puedeSerPaqueteEnviado(lugar, mensajero) = estaPago && lugar.puedePasar(
+		mensajero
+	)
 }
 
 object puenteDeBrooklyn {
-	method puedePasar(mensajero) {
-		return mensajero.peso() <= 1000
-	}
+	method puedePasar(mensajero) = mensajero.peso() <= 1000
 }
 
 object matrix {
-    method puedePasar(mensajero) {
-		return mensajero.puedeLlamar()
-	}
+	method puedePasar(mensajero) = mensajero.puedeLlamar()
 }
 
 object chuckNorris {
-	 const peso = 900
-
-     method peso() {
-        return peso    
-	}
-
-	method puedeLlamar () {
-        return true
-	}
+	const peso = 900
+	
+	method peso() = peso
+	
+	method puedeLlamar() = true
 }
 
 object neo {
-    const peso = 0
-
+	const peso = 0
 	var credito = 100
-
-     method peso() {
-        return peso    
+	
+	method peso() = peso
+	
+	method puedeLlamar() = credito > 0
+	
+	method credito(_credito) {
+		credito = _credito
 	}
-
-	method puedeLlamar() {
-        return credito > 0
-	}
-
-	method aumentarCredito (cantidad) {
-		credito += cantidad
-	}
-
-	method disminuirCredito (cantidad) {
-		credito -= cantidad
-	}
-
 }
 
 object lincolnHawk {
-	var peso = 80 
-
-	var vehiculoActual = bici
-
-	method cambioDePesoYVehiculo (_vehiculo) {
-         peso = peso - vehiculoActual.pesoQueTiene()
-		 vehiculoActual = _vehiculo
-		 peso = peso + vehiculoActual.pesoQueTiene()
+	var pesoPropio = 80
+	var vehiculo = bici
+	
+	method vehiculo(_vehiculo) {
+		vehiculo = _vehiculo
 	}
-
-	method peso () {
-        return peso
+	
+	method vehiculo() = vehiculo
+	
+	method peso() = pesoPropio + vehiculo.peso()
+	
+	method pesoPropio(_pesoPropio) {
+		pesoPropio = _pesoPropio
 	}
-
-	method puedeLlamar() {
-        return false
-	}
+	
+	method puedeLlamar() = false
 }
 
 object bici {
-     method pesoQueTiene () {
-		return 10
-	 }
+	method peso() = 10
 }
 
 object camion {
+	// Inicializado sin acoplados por decisión propia, de todas formas con el setter "acoplados" es posible cambiarlo a conveniencia.
 	var acoplados = 0
-
-	const pesoDelCamion = 500
-
-	var pesoTotal = pesoDelCamion
-
-	method agregarAcoplado () {
-		acoplados += 1
-		pesoTotal += acoplado.pesoQueTiene()
+	const pesoPropio = 500
+	
+	method acoplados(_acoplados) {
+		acoplados = _acoplados
 	}
-
-	method quitarAcoplado () {
-		if (acoplados > 0) {
-			acoplados -= 1
-			pesoTotal -= acoplado.pesoQueTiene()
-		} else {
-			acoplados += 0
-			pesoTotal += 0
-		}
-	}
- 
-    method cantidadDeAcoplados () {
-		return acoplados
-	}
-
-	method pesoQueTiene () {
-		return pesoTotal
-	 }
+	
+	method acoplados() = acoplados
+	
+	method peso() = pesoPropio + (acoplados * acoplado.peso())
 }
 
 object acoplado {
-	method pesoQueTiene () {
-		return 500
-	}
+	method peso() = 500
 }
