@@ -65,7 +65,6 @@ object bici {
 }
 
 object camion {
-	// Inicializado sin acoplados por decisión propia, de todas formas con el setter "acoplados" es posible cambiarlo a conveniencia.
 	var acoplados = 0
 	const pesoPropio = 500
 	
